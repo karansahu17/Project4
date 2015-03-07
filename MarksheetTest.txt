@@ -50,7 +50,8 @@ public class MarksheetTest {
 	
 	public static void getMeritList() throws Exception {
 		ArrayList marksheetVO = new ArrayList();
-	    
+	     MarksheetService marksheetService = new MarksheetService();
+	     marksheetService.getmeritlist();
 		
 	}
 	
