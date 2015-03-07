@@ -1,0 +1,57 @@
+package com.test;
+
+import java.util.ArrayList;
+
+import com.service.MarksheetService;
+import com.vo.MarksheetVO;
+
+public class MarksheetTest {
+	private static final String ArrayList = null;
+
+	public static void main(String[] args) throws Exception {
+		get();
+	}
+
+	public static void add() throws Exception {
+		MarksheetVO marksheetVO = new MarksheetVO();
+		marksheetVO.setRollNo(3);
+		marksheetVO.setName("shyam");
+		marksheetVO.setPhysics(89);
+		marksheetVO.setChemistry(100);
+		marksheetVO.setMaths(98);
+
+		MarksheetService marksheetService = new MarksheetService();
+		marksheetService.add(marksheetVO);
+	}
+
+	public static void update() throws Exception {
+		MarksheetVO marksheetVO = new MarksheetVO();
+		marksheetVO.setRollNo(3);
+		marksheetVO.setName("Sunrays");
+		marksheetVO.setPhysics(100);
+		marksheetVO.setChemistry(90);
+		marksheetVO.setMaths(99);
+
+		MarksheetService marksheetService = new MarksheetService();
+		marksheetService.update(marksheetVO);
+	}
+
+	public static void dalete() throws Exception {
+		MarksheetVO marksheetVO = new MarksheetVO();
+		marksheetVO.setRollNo(1);
+		MarksheetService marksheetService = new MarksheetService();
+		marksheetService.delete(marksheetVO);
+	}
+
+	public static void get() throws Exception {
+		MarksheetService marksheetService = new MarksheetService();
+		marksheetService.get(1);
+	}
+	
+	public static void getMeritList() throws Exception {
+		ArrayList marksheetVO = new ArrayList();
+	    
+		
+	}
+	
+}
