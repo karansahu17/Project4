@@ -1,0 +1,112 @@
+package com.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import com.vo.MarksheetVO;
+
+public class MarksheetService {
+	private static final String Meritlist = null;
+
+	public void add(MarksheetVO marksheetVO) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("INSERT INTO MARKSHEET VALUES(?,?,?,?,?)");
+		preparedStatement.setInt(1, marksheetVO.getRollNo());
+		preparedStatement.setString(2, marksheetVO.getName());
+		preparedStatement.setInt(3, marksheetVO.getPhysics());
+		preparedStatement.setInt(4, marksheetVO.getChemistry());
+		preparedStatement.setInt(5, marksheetVO.getMaths());
+		int i = preparedStatement.executeUpdate();
+		System.out.println("Record Inserted. " + i);
+		preparedStatement.close();
+		connection.close();
+	}
+
+	public void update(MarksheetVO marksheetVO) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("UPDATE MARKSHEET SET NAME=?,PHYSICS=?,CHEMISTRY=?,MATHS=? WHERE ROLL_NO = ?");
+		preparedStatement.setString(1, marksheetVO.getName());
+		preparedStatement.setInt(2, marksheetVO.getPhysics());
+		preparedStatement.setInt(3, marksheetVO.getChemistry());
+		preparedStatement.setInt(4, marksheetVO.getMaths());
+		preparedStatement.setInt(5, marksheetVO.getRollNo());
+		int i = preparedStatement.executeUpdate();
+		System.out.println("Record Updated. " + i);
+		preparedStatement.close();
+		connection.close();
+	}
+
+	public void delete(MarksheetVO marksheetVO) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("DELETE FROM MARKSHEET WHERE ROLL_NO = ?");
+		preparedStatement.setInt(1, marksheetVO.getRollNo());
+		int i = preparedStatement.executeUpdate();
+		System.out.println("Record Deleted. " + i);
+		preparedStatement.close();
+		connection.close();
+	}
+
+	public void get(Integer rollNo) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("SELECT * FROM MARKSHEET WHERE ROLL_NO = ?");
+		preparedStatement.setInt(1, rollNo);
+		ResultSet resultSet = preparedStatement.executeQuery();
+
+		while (resultSet.next()) {
+			System.out.print(resultSet.getInt(1) + "\t");
+			System.out.print(resultSet.getString(2) + "\t");
+			System.out.print(resultSet.getInt(3) + "\t");
+			System.out.print(resultSet.getInt(4) + "\t");
+			System.out.println(resultSet.getInt(5));
+			
+		}
+		preparedStatement.close();
+		connection.close();
+	}
+	
+	public void getMeritList() throws Exception {
+		ArrayList arraylist = new ArrayList();
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM marksheet ('physics'+'chemistry'+'maths ");
+         preparedStatement.setString(1,Meritlist); 
+         ResultSet resultSet = preparedStatement.executeQuery();
+         
+         while(resultSet.next());
+         System.out.print(resultSet.getInt(1)+ "\t");
+         System.out.print(resultSet.getInt(2)+ "\t");
+         System.out.print(resultSet.getInt(3)+ "\t");
+         System.out.print(resultSet.getInt(4)+ "\t");
+         System.out.println(resultSet.getInt(5));
+		}
+	PreparedStatement.close();
+	Connection.close();
+	
+}
+
+	
+	public void search(MarksheetVO vo) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ors", "root", "root");
+		PreparedStatement preparedStatement = connection.prepareStatement("Select ");
+		
+	}
+	
+	
+	
+	}
+
+
